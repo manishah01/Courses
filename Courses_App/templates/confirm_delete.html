@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'courses.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Course</title>
+</head>
+<body>
+    <div id="wrapper">
+    <h1>Are You Sure You Want To Delete This Course</h1>
+    <h2>Course Name</h2>
+    <p>{{course.name}}</p>
+    <h2>Course Description</h2>
+    <p>{{course.description}}</p>
+    <a href="/">No</a> | <a href="/courses/destroy/{{course.id}}/confirm">Yes, I'm Sure</a>
+    </div>
+
+</body>
+</html>

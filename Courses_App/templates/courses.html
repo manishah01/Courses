@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'courses.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+</head>
+<body>
+    <div id ="wrapper">
+    <h1> Add A New Course</h1>
+    {% if messages %}
+    <ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/courses/add" method="post">
+        {% csrf_token %} 
+        <h3>Course Name</h3>
+        <input type="text" name="name">
+
+        <h3> Course Description</h3>
+        <input type="text" name="description" id="description">
+        
+        <button>Add Course</button>
+    </form>
+
+    <h1>Available Courses</h1>
+    <table>
+        <thead>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Created</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td>{{course.name}}</td>
+                <td>{{course.description}}</td>
+                <td> {{course.created_at}} </td>
+                <td> <a href="/courses/destroy/{{course.id}}">delete</a> </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+    </div>
+</body>
+</html>
